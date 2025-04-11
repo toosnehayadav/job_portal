@@ -1,0 +1,172 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<!-- Custom Style -->
+<style>
+    body {
+        background-color: black; /* Light background for profile */
+        font-family: Arial, sans-serif;
+    }
+
+    .profile-container {
+        background-color: #002;
+        color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        padding: 30px;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        object-fit: cover;
+        border: 5px solid #f1f1f1;
+    }
+
+    .profile-name {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .profile-details {
+        font-size: 1rem;
+        color: #555;
+        margin: 10px 0;
+        line-height: 1.5;
+    }
+
+    .profile-details b {
+        color: #333;
+    }
+
+    .profile-footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 25px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+    .profile-container p {
+        font-size: 1rem;
+        color: #777;
+        margin: 10px 0;
+    }
+
+    .profile-container .profile-details span {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+{% load static %}
+<!-- Include Navigation -->
+{% include 'core/nav.html' %}
+
+<!-- Title -->
+<h1 class="text-center text-light mt-4">WelCome!</h1>
+
+<!-- Profile Card -->
+<div class="profile-container">
+    <!-- Profile Image -->
+    
+    {% if user.profile_image %}
+    <img src="{{ user.profile_image.url }}" alt="Profile Image" class="profile-image">
+        {% else %}
+           <img src="{% static 'core/images/defaultuser.svg' %}" alt="Profile Image" class="profile-image">
+    {% endif %}
+        
+ 
+
+    <!-- User Name -->
+    <div class="profile-name text-light">{{ user.full_name }}</div>
+
+    <!-- User Details -->
+    <div class="profile-details">
+        <p><b>Email:</b> {{ user.email }}</p>
+
+        <p><b>Phone :</b> {{ user.phone_number }}</p>
+        <p><b>Age :</b> {{ user.age }}</p>
+    </div>
+    <p><b>Address :</b> {{ user.address }}</p>
+
+    <!-- Profile Buttons -->
+    <div class="profile-footer">
+        <a href="/" class="btn">Edit Profile</a>
+        <a href="/user/logout/" class="btn" style="background-color: #f44336;">Logout</a>
+    </div>
+</div>
+
+
+<div class="container mt-4" style="margin-bottom: 10px;">
+
+<h5 class="text-light text-center">Applied Jobs</h5>
+    <table class="table table-strip bg-dark text-light">
+
+        <thead>
+
+            <tr>
+                <th>Job Name</th>
+                <th>Applied Date</th>
+                <th>Action</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+            
+            {% if job %}
+
+            
+            {% for i in job %}
+      
+                <tr class=text-light>
+                    <td>{{i.job.job_name}}</td>
+                    <td>{{i.applied_on}}</td>
+                    <td> <a href="{% url 'deleteJOb' id=i.id %}" class="btn btn-outline-danger" style="background-color: red;">Delete Job</a> 
+                        <a class="btn btn-outline-warning" href="{% url 'jobdetail' id=i.job.id %}">View</a>
+                    </td>
+                </tr>
+
+
+                
+            {% endfor %}
+                
+
+                {% else %}
+                <tr>
+                    <td>No Job Applied Yet!</td>
+                </tr>
+            {% endif %}
+                
+        </tbody>
+
+    </table>
+
+</div>
+
+
+{% include 'core/footer.html' %}
+
+{% endblock content %}

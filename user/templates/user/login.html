@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<style>
+    body{
+        background-color: black;
+        color: white;
+    }
+</style>  
+{% include 'core/nav.html' %}
+
+
+<div class="container my-5">
+
+    {% if messages %}
+{% for k in messages %} 
+
+    <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+{{k}}
+</div>
+
+
+
+
+{% endfor %}
+{% endif %}
+
+    <div class="row">
+        <div class="col-sm-8">
+            <form action="" method="post" style="width: 600px;">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" >
+                </div>
+    
+                <div class="mb-3">
+                    <label for="password" class="form-label"> <i class="fas fa-key"></i> Password</label>
+                    <input type="password" class="form-control" id="password" name="password" >
+                </div>
+
+
+                <input type="submit" class="btn btn-primary" value="Login">
+            </form>
+        </div>
+    
+        <div class="col-sm-4">
+            <img src="{% static 'core/images/login.svg' %}" alt="" class="img-fluid">
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+    

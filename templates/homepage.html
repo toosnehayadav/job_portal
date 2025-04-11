@@ -1,0 +1,98 @@
+{% extends 'core/base.html' %}
+
+
+
+{% block content %}
+    
+<style>
+    body{
+        background-color: black;
+    }
+</style>
+<style>
+    .mainjob {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 10px;
+    }
+  
+    .card-container {
+        flex: 1 1 18rem;
+        margin-top: 10px;
+        max-width: 18rem;
+    }
+  
+    /* For small screens (e.g., mobile) */
+    @media (max-width: 768px) {
+        .card-container {
+            flex: 1 1 100%;
+        }
+    }
+  
+    /* For medium screens (e.g., tablets) */
+    @media (max-width: 1024px) {
+        .card-container {
+            flex: 1 1 45%;
+        }
+    }
+  </style>
+  
+{% include 'core/nav.html' %}
+{% load static %}
+<div class="container">
+    {% if messages %}
+    {% for k in messages %} 
+    
+        <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+    {{k}}
+    </div>
+
+    {% endfor %}
+    {% endif %}
+    {% if jobs %}
+    <div class="mainjob container" style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 10px;">
+        {% for job in jobs %}
+        <div class="card-container" style="flex: 1 1 18rem; margin-top: 10px; max-width: 18rem;">
+            <div class="card bg-dark text-light" style="width: 100%; height: 100%;">
+                {% if job.image %}
+                    <img class="card-img-top" src="{{ job.image.url }}" alt="{{ job.job_name }}" width="200" height="200px">
+                {% else %}
+                    <img class="card-img-top" src="{% static 'core/images/job.svg' %}" alt="{{ job.job_name }}" width="200" height="200px">
+                {% endif %}
+                <div class="card-body bg-dark text-light">
+                    <h5 class="card-title">{{ job.job_name }}</h5>
+                    <hr class="text-light">
+                    <p class="card-text">{{ job.detail }}</p>
+                </div>
+                <ul class="list-group list-group-flush bg-dark text-light">
+                    <li class="list-group-item bg-dark text-light">Experience (in year): <b>{{ job.experience }}</b></li>
+                    <li class="list-group-item bg-dark text-light">Salary: <b>{{ job.salary }} Rs/month</b></li>
+                    <li class="list-group-item bg-dark text-light">Location: <b>{{ job.address }}</b></li>
+                </ul>
+                <div class="card-body">
+                    <a href="/user/apply/{{job.id}}" class="btn btn-outline-primary">Apply Job</a>
+               
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+<img src="{% static 'core/images/erroe.svg' %}" alt="" class="img-fluid">
+        </div>
+        <div class="col-sm-8">
+        <h3 class="mt-4 mx-4 text-light"><i>No Jobs Available..</i></h3>    
+        </div>
+    </div>
+</div>
+{% endif %}
+</div>
+
+{% include 'core/footer.html' %}
+{% endblock content %}
+    

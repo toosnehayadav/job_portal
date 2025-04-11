@@ -1,0 +1,94 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    
+{% include 'core/nav.html' %}
+
+
+<style>
+    body{
+        background-color: black;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <div class="row">
+        <div class="col-sm-4">
+
+            <img src="{% static 'core/images/homepage.svg' %}" alt="" class="img-fluid" style="height: 600px;">
+
+        </div>
+
+        <div class="col-sm-8">
+            <h3 class="text-light mt-4 mx-4"><i>Find Your Future, Today.</i> </h3>
+
+            <h2 class="mt-3 mx-4 text-light">My Job 🎯</h2>
+
+            <p class="mt-3 mx-4 text-light">
+                At MY JOB, we’re committed to helping you find your perfect job. Whether you’re just starting your career or looking to take the next step, we provide a wide range of opportunities across industries to match your skills and ambitions.
+            </p>
+            <ul class="mt-3 mx-4 text-light">
+<li> <b>Endless Opportunities:</b> We partner with top employers across various sectors, offering a diverse range of job listings.</li>
+
+<li><b>Easy Job Search:</b> Our intuitive platform makes it simple to search and apply for jobs that fit your skills, experience, and goals.</li>
+
+<li><b>Personalized Job Alerts:</b> Get notified about new job openings tailored to your preferences.</li>
+<li><b>Career Resources:</b> Access helpful career tips, resume-building tools, and interview prep to set you up for success.</li>
+<li><b>Secure & Confidential:</b> We respect your privacy, and your personal information stays secure.</li>
+            </ul>
+
+            <p class="mt-3 mx-4 text-light">
+                Ready to take the next step in your career? <br>
+Join thousands of job seekers already finding success with [Your Job Portal Name]. Whether you’re searching for a full-time position, part-time work, or freelance opportunities, we’re here to help you succeed.
+            </p>
+
+
+            <a href="/user/new-user/" class="btn btn-outline-primary mx-4">Apply Now</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="container">
+
+    <h3 class="text-white text-center" style="text-decoration: underline;">Feedbacks </h3>
+    <div class="ppl mt-4" style="display: flex; justify-content: space-around;  flex-direction: row;">
+
+
+        <div class="imgandtext">
+            <img src="{% static 'core/images/p1.jpg' %}" alt="" class="img-fluid" style="border-radius: 50%; width: 250px; height: 250px;">
+            <p class="mt-3 text-light" style="width: 250px;"> 
+                "I was struggling to find the right job until I found My JOB. The site is so easy to navigate, and I landed my dream job in just a few weeks. Highly recommend it to anyone looking for their next opportunity!"
+            </p>
+        </div>
+
+        <div class="imgandtext">
+            <img src="{% static 'core/images/p2.avif' %}" alt="" class="img-fluid" style="border-radius: 50%; width: 250px; height: 250px;">
+            <p class="mt-3 text-light" style="width: 250px;"> 
+               "As a tech professional, I’ve tried many job platforms, but none compare to MY JOB. The job listings are relevant, the application process is quick, and the job alerts kept me updated on great opportunities."
+            </p>
+        </div>
+
+
+        <div class="imgandtext">
+            <img src="{% static 'core/images/p3.jpg' %}" alt="" class="img-fluid" style="border-radius: 50%; width: 250px; height: 250px;">
+            <p class="mt-3 text-light" style="width: 250px;"> 
+                "I had been job hunting for months without any luck. My JOB made the process so much easier. The personalized recommendations were spot on, and I found a job that perfectly matches my skills. I’m so grateful for this platform!"
+            </p>
+        </div>
+
+
+    </div>
+ 
+</div>
+<div class="container-fluid">
+    {% include 'core/footer.html' %}
+</div>
+<marquee class="text-danger" scrollamount="6" direction="left">Don't miss out on great opportunities! New jobs are added every day at MY JOB. Start applying today!</marquee>
+{% endblock content %}

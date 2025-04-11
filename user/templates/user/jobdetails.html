@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+
+
+
+{% block content %}
+    {% load static %}
+
+{% include 'core/nav.html' %}
+
+
+<style>
+    body {
+        background-color: black; /* Light background for profile */
+        font-family: Arial, sans-serif;
+    }
+</style>
+
+
+<div class="container">
+
+    
+    {% if job %}
+        
+    <div class="container mt-4">
+
+        {% if job.image %}
+                    <img class="card-img-top" src="{{ job.image.url }}" alt="{{ job.job_name }}" width="350px" height="350px" style="width: 350px; height: 350px;">
+                {% else %}
+                    <img class="card-img-top" src="{% static 'core/images/job.svg' %}" alt="{{ job.job_name }}" width="200" height="200px">
+                {% endif %}
+
+
+                <div class="mt-4" style="margin-bottom: 10px;">
+                    <h4 class=text-light>{{job.job_name}}</h4>
+                    <p class="card-text text-light">{{ job.detail }}</p>
+                    <ul class="list-group list-group-flush bg-dark text-light">
+                        <li class="list-group-item bg-dark text-light">Experience (in year): <b>{{ job.experience }}</b></li>
+                        <li class="list-group-item bg-dark text-light">Salary: <b>{{ job.salary }} Rs/month</b></li>
+                        <li class="list-group-item bg-dark text-light">Location: <b>{{ job.address }}</b></li>
+                    </ul>
+                </div>
+            
+
+    </div>
+ 
+<div class="container mt-4">
+    <img src="{% static 'core/images/fun.svg'  %}" alt="" class="img-fluid" style="width: 400px; height: 400px;">
+</div>
+
+    {% else %}
+    <div class="container mt-4">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="{% static 'core/images/something.svg' %}" alt="" class="img-fluid">
+            </div>
+            <div class="col-sm-8">
+               <h3 class="text-light">Something Went Worng!!!</h3>
+            </div>
+        </div>
+
+    </div>
+
+    {% endif %}
+        
+
+</div>
+
+
+
+
+
+{% include 'core/footer.html' %}
+
+
+{% endblock content %}
+    
